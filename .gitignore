@@ -22,6 +22,7 @@ doc/api/
 *.ap_
 *.ipa
 *.xcarchive/
+*.xcresult
 *.dSYM/
 *.dSYM.zip
 *.keystore

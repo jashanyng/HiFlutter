@@ -18,6 +18,7 @@ Runner/GeneratedPluginRegistrant.*
 # iOS archives & signing artifacts
 *.ipa
 *.xcarchive/
+*.xcresult
 *.dSYM/
 *.dSYM.zip
 *.p8
