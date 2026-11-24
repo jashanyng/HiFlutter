@@ -54,7 +54,7 @@ hiflutter mode pin <tag> [--project-dir|-p <dir>] [--git-url <url>]
 flutter pub get
 ```
 
-- 默认 Git 仓库地址为 `https://github.com/pcfprio/HiFlutter.git`（可通过 `--git-url` 覆盖为本地克隆路径或镜像 URL，便于离线与 CI 演练）。
+- 默认 Git 仓库地址为 `https://github.com/jashanyng/HiFlutter.git`（可通过 `--git-url` 覆盖为本地克隆路径或镜像 URL，便于离线与 CI 演练）。
 - 工具会浅克隆指定 `<tag>`，基于该版本快照计算完整传递依赖闭包，并在 `pubspec_overrides.yaml` 写入模式头 `# hiflutter-tool:mode=pin tag=<tag> url=<gitUrl>` 与对应的 `git`（`url`、`ref`、`path`）覆盖，防止 pub 前往 pub.dev 查找尚未公开的包。
 
 ### 3. 发布模式（`hosted`）

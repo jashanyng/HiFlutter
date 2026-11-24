@@ -1,6 +1,6 @@
 # hiflutter
 
-Umbrella entry package for [HiFlutter](https://github.com/pcfprio/HiFlutter). Re-exports the HiFlutter-owned public APIs across the core families without exposing third-party types or performing any automatic initialization.
+Umbrella entry package for [HiFlutter](https://github.com/jashanyng/HiFlutter). Re-exports the HiFlutter-owned public APIs across the core families without exposing third-party types or performing any automatic initialization.
 
 ## Included Packages
 

@@ -3,8 +3,8 @@ description: >-
   url_launcher implementation of the HiFlutter link-opening contract, for
   opening web pages and other apps from Flutter.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_nav_url_launcher
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_nav_url_launcher
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - url-launcher
   - links

@@ -4,8 +4,8 @@ description: >-
   chrome, loading progress, error retry via HiErrorView, and external link
   handoff via HiLinkOpener.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_suite_webview
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_suite_webview
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - webview
   - browser

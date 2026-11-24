@@ -1,6 +1,6 @@
 # hiflutter_store
 
-Pure Dart storage contracts of [HiFlutter](https://github.com/pcfprio/HiFlutter).
+Pure Dart storage contracts of [HiFlutter](https://github.com/jashanyng/HiFlutter).
 It depends only on `hiflutter_base` and works in any Dart or Flutter project.
 
 ## Features

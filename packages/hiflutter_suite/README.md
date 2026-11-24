@@ -1,6 +1,6 @@
 # hiflutter_suite
 
-Material 3 UI components of [HiFlutter](https://github.com/pcfprio/HiFlutter):
+Material 3 UI components of [HiFlutter](https://github.com/jashanyng/HiFlutter):
 localized state views, a `ChangeNotifier`-based pagination state machine, a
 paginated list view with pull-to-refresh and a four-state load-more footer,
 overlay toast and confirmation dialog, grouped list rows, primary buttons, a

@@ -4,8 +4,8 @@ description: >-
   maps ConnectivityResult streams and checks to HiNetworkStatus and normalizes
   platform errors to HiError without leaking third-party types.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_net_connectivity
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_net_connectivity
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - connectivity
   - network

@@ -26,7 +26,7 @@ enum HiIntegrationMode {
 /// Supports `mode source`, `mode pin <tag>`, `mode hosted`, and `check`.
 final class HiToolRunner {
   /// Default upstream git URL used when pinning without `--git-url`.
-  static const defaultGitUrl = 'https://github.com/pcfprio/HiFlutter.git';
+  static const defaultGitUrl = 'https://github.com/jashanyng/HiFlutter.git';
 
   /// Creates a runner with optional overrides for output, error output,
   /// working directory, and environment variables.

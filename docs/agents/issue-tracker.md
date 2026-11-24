@@ -1,6 +1,6 @@
 # Issue 跟踪器：GitHub
 
-本仓库的 Issue 与 Spec 以 GitHub Issues 的形式存放在 `pcfprio/HiFlutter`。所有操作都使用 `gh` CLI。
+本仓库的 Issue 与 Spec 以 GitHub Issues 的形式存放在 `jashanyng/HiFlutter`。所有操作都使用 `gh` CLI。
 
 ## 约定
 

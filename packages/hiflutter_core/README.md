@@ -1,7 +1,7 @@
 # hiflutter_core
 
 Flutter foundation contracts and utilities of
-[HiFlutter](https://github.com/pcfprio/HiFlutter). It depends only on
+[HiFlutter](https://github.com/jashanyng/HiFlutter). It depends only on
 `hiflutter_base` and the Flutter SDK; plug in the platform device-info
 implementation with `hiflutter_core_device`.
 

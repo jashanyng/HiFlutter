@@ -1,7 +1,7 @@
 # hiflutter_suite_webview
 
 [webview_flutter](https://pub.dev/packages/webview_flutter) adapter for
-[HiFlutter](https://github.com/pcfprio/HiFlutter), providing `HiWebViewPage`
+[HiFlutter](https://github.com/jashanyng/HiFlutter), providing `HiWebViewPage`
 with Material 3 chrome, progress indicator, `HiErrorView` retry, and external
 link handoff via `HiLinkOpener` without exposing third-party types.
 

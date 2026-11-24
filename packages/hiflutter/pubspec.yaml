@@ -4,8 +4,8 @@ description: >-
   non-vendor adapters for logging, observability, networking, navigation,
   storage, device info, and Material 3 UI components.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - flutter
   - utilities

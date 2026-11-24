@@ -1,6 +1,6 @@
 # hiflutter_base
 
-Pure Dart foundation of [HiFlutter](https://github.com/pcfprio/HiFlutter).
+Pure Dart foundation of [HiFlutter](https://github.com/jashanyng/HiFlutter).
 It has no third-party dependencies and works in any Dart or Flutter project.
 
 ## Features

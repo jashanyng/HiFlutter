@@ -4,8 +4,8 @@ description: >-
   HiImageViewer backed by Material 3 components without exposing third-party
   types.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_suite_cached_image
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_suite_cached_image
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - image
   - cache

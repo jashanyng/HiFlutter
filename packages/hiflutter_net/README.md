@@ -1,6 +1,6 @@
 # hiflutter_net
 
-Pure Dart networking contract of [HiFlutter](https://github.com/pcfprio/HiFlutter).
+Pure Dart networking contract of [HiFlutter](https://github.com/jashanyng/HiFlutter).
 It depends only on `hiflutter_base` and defines a transport-agnostic HTTP
 client, response envelope decoding, pagination models and a connectivity
 contract.

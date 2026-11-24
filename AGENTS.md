@@ -43,7 +43,7 @@
 
 ### Issue tracker
 
-Issue 与 Spec 存放在 GitHub 仓库 `pcfprio/HiFlutter` 的 Issues 中，通过 `gh` CLI 操作。详见 `docs/agents/issue-tracker.md`。
+Issue 与 Spec 存放在 GitHub 仓库 `jashanyng/HiFlutter` 的 Issues 中，通过 `gh` CLI 操作。详见 `docs/agents/issue-tracker.md`。
 
 ### Triage labels
 

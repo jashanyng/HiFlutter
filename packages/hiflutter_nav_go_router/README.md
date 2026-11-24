@@ -2,7 +2,7 @@
 
 [go_router](https://pub.dev/packages/go_router) implementation of the
 `HiNavigator` contract from `hiflutter_nav`, part of
-[HiFlutter](https://github.com/pcfprio/HiFlutter).
+[HiFlutter](https://github.com/jashanyng/HiFlutter).
 
 ## Features
 

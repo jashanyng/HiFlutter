@@ -3,8 +3,8 @@ description: >-
   path_provider and dart:io adapter for hiflutter_store: app-private file
   storage on Android and iOS behind the HiFileStore contract.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_store_file
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_store_file
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - storage
   - files

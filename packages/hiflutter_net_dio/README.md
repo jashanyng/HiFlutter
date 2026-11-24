@@ -2,7 +2,7 @@
 
 [dio](https://pub.dev/packages/dio) implementation of the `HiTransport`
 contract from `hiflutter_net`, part of
-[HiFlutter](https://github.com/pcfprio/HiFlutter).
+[HiFlutter](https://github.com/jashanyng/HiFlutter).
 
 ## Features
 

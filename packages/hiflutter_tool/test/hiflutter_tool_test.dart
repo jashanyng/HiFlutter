@@ -33,6 +33,19 @@ void main() {
       final extraArgs = await ws.run(['mode', 'source', 'extra']);
       expect(extraArgs.exitCode, 64);
     });
+
+    test('uses jashanyng/HiFlutter as default upstream git URL', () async {
+      expect(
+        HiToolRunner.defaultGitUrl,
+        'https://github.com/jashanyng/HiFlutter.git',
+      );
+      final help = await ws.run(['mode', 'pin', '--help']);
+      expect(help.exitCode, 0);
+      expect(
+        help.stdout,
+        contains('https://github.com/jashanyng/HiFlutter.git'),
+      );
+    });
   });
 
   group('mode source', () {

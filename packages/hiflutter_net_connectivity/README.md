@@ -2,7 +2,7 @@
 
 [connectivity_plus](https://pub.dev/packages/connectivity_plus) implementation
 of the `HiConnectivity` contract from `hiflutter_net`, part of
-[HiFlutter](https://github.com/pcfprio/HiFlutter).
+[HiFlutter](https://github.com/jashanyng/HiFlutter).
 
 ## Features
 

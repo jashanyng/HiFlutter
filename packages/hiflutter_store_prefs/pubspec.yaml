@@ -3,8 +3,8 @@ description: >-
   shared_preferences adapter for hiflutter_store: persistent key-value
   storage on Android and iOS behind the HiKeyValueStore contract.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_store_prefs
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_store_prefs
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - storage
   - key-value

@@ -1,6 +1,6 @@
 # hiflutter_base_log_file
 
-File log sink for [HiFlutter](https://github.com/pcfprio/HiFlutter)'s
+File log sink for [HiFlutter](https://github.com/jashanyng/HiFlutter)'s
 logging in [`hiflutter_base`](../hiflutter_base), so users can export logs
 when they report a problem.
 

@@ -2,7 +2,7 @@
 
 [url_launcher](https://pub.dev/packages/url_launcher) implementation of the
 `HiLinkOpener` contract from `hiflutter_nav`, part of
-[HiFlutter](https://github.com/pcfprio/HiFlutter).
+[HiFlutter](https://github.com/jashanyng/HiFlutter).
 
 ## Features
 

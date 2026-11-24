@@ -1,7 +1,7 @@
 # hiflutter_suite_cached_image
 
 [cached_network_image](https://pub.dev/packages/cached_network_image) adapter
-for [HiFlutter](https://github.com/pcfprio/HiFlutter), providing `HiCachedImage`
+for [HiFlutter](https://github.com/jashanyng/HiFlutter), providing `HiCachedImage`
 and `HiImageViewer` without exposing any third-party types.
 
 ## Features

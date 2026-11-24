@@ -27,6 +27,6 @@
 
 ## 智能体协作流程（Agents）
 
-- [Issue 跟踪器约定](agents/issue-tracker.md)：`pcfprio/HiFlutter` 上使用 `gh` CLI 操作 Issue、父子关系与原生阻塞依赖的约定
+- [Issue 跟踪器约定](agents/issue-tracker.md)：`jashanyng/HiFlutter` 上使用 `gh` CLI 操作 Issue、父子关系与原生阻塞依赖的约定
 - [分诊标签与专用标签映射](agents/triage-labels.md)：五个分诊角色标签以及自动化流程维护的非分诊标签 `deps-breaking`
 - [领域文档布局规范](agents/domain.md)：单上下文布局及使用 `GLOSSARY.md` 与 `docs/adr/` 的规范

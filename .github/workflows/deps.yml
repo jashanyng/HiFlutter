@@ -1,0 +1,58 @@
+name: Dependencies
+
+on:
+  schedule:
+    - cron: '0 1 * * 1'
+  workflow_dispatch: {}
+
+permissions: {}
+
+jobs:
+  deps-report:
+    name: Check breaking dependency updates
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          flutter-version: '3.50.0'
+          channel: stable
+          cache: true
+
+      - name: Report breaking dependency updates
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          flutter pub get
+          set +e
+          report="$(dart run tool/deps_report.dart --markdown)"
+          status=$?
+          set -e
+
+          if [ "$status" -eq 0 ]; then
+            echo "No breaking dependency updates."
+            exit 0
+          fi
+          if [ "$status" -ne 2 ]; then
+            echo "deps_report failed with exit code $status" >&2
+            exit "$status"
+          fi
+
+          body_file="$(mktemp)"
+          printf '%s\n' "$report" > "$body_file"
+          trap 'rm -f "$body_file"' EXIT
+
+          issue_number="$(gh issue list --repo "$GH_REPO" --label deps-breaking --state open --limit 1 --json number --jq '.[0].number // empty')"
+          if [ -n "$issue_number" ]; then
+            gh issue edit "$issue_number" --repo "$GH_REPO" --title "第三方依赖有可做的破坏性更新" --body-file "$body_file"
+          else
+            gh issue create --repo "$GH_REPO" --label deps-breaking --title "第三方依赖有可做的破坏性更新" --body-file "$body_file"
+          fi

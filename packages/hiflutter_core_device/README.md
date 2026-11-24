@@ -3,7 +3,7 @@
 [device_info_plus](https://pub.dev/packages/device_info_plus) and
 [package_info_plus](https://pub.dev/packages/package_info_plus)
 implementation of the `HiDeviceInfoSource` contract from `hiflutter_core`,
-part of [HiFlutter](https://github.com/pcfprio/HiFlutter).
+part of [HiFlutter](https://github.com/jashanyng/HiFlutter).
 
 ## Features
 

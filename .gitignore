@@ -1,5 +1,7 @@
 # Dart / Flutter
 .dart_tool/
+.pub-cache/
+.pub/
 build/
 pubspec.lock
 pubspec_overrides.yaml
@@ -8,14 +10,41 @@ pubspec_overrides.yaml
 coverage/
 doc/api/
 
-# IDE
+# Environment & local secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Mobile archives & signing artifacts
+*.apk
+*.aab
+*.ap_
+*.ipa
+*.xcarchive/
+*.dSYM/
+*.dSYM.zip
+*.keystore
+*.jks
+*.p8
+*.p12
+*.mobileprovision
+key.properties
+ExportOptions*.plist
+
+# IDE & OS
 .idea/
 *.iml
+*.ipr
+*.iws
 .vscode/
-
-# OS
 .DS_Store
+*~
+*.swp
 
-# Agent tooling
-.claude/worktrees/
-.claude/settings.local.json
+# Agent tooling & code graph
+/.codegraph/
+/.claude/
+/.codex/
+/.gemini/
+/.scratch/

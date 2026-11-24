@@ -4,8 +4,8 @@ description: >-
   retention cleanup and a list of exportable log files, with a
   path_provider factory for the application support directory.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_base_log_file
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_base_log_file
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - logging
   - file

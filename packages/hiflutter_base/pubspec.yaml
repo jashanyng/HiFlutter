@@ -4,8 +4,8 @@ description: >-
   with default redaction, lenient type conversion, multi-candidate map
   lookup, and consent-gated analytics and crash reporting contracts.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_base
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_base
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - error-handling
   - json

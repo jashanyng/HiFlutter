@@ -1,6 +1,6 @@
 # hiflutter_tool
 
-Command-line tool for [HiFlutter](https://github.com/pcfprio/HiFlutter) consumer
+Command-line tool for [HiFlutter](https://github.com/jashanyng/HiFlutter) consumer
 projects. It switches `pubspec_overrides.yaml` between the three integration
 modes without touching `pubspec.yaml`, preserving any non-HiFlutter overrides,
 and verifies readiness before release builds.
@@ -21,7 +21,7 @@ and verifies readiness before release builds.
   hiflutter mode pin <tag> [--project-dir <dir>] [--git-url <url>]
   ```
   Shallow-clones `<tag>` from `<url>` (defaulting to
-  `https://github.com/pcfprio/HiFlutter.git`), computes the transitive closure of
+  `https://github.com/jashanyng/HiFlutter.git`), computes the transitive closure of
   `hiflutter*` packages at that tag, and writes `git` overrides with `url`,
   `ref`, and `path` into `pubspec_overrides.yaml`.
 

@@ -3,8 +3,8 @@ description: >-
   Command-line tool for HiFlutter consumer projects to switch between source,
   pinned git tag, and hosted integration modes and run release checks.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_tool
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_tool
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - cli
   - developer-tools

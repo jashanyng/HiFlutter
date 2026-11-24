@@ -1,6 +1,6 @@
 # hiflutter_nav
 
-Navigation contracts of [HiFlutter](https://github.com/pcfprio/HiFlutter).
+Navigation contracts of [HiFlutter](https://github.com/jashanyng/HiFlutter).
 It depends on nothing but the Flutter SDK; plug in a router with an adapter
 such as `hiflutter_nav_go_router`, and open external links with
 `hiflutter_nav_url_launcher`.

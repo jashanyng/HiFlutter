@@ -4,8 +4,8 @@ description: >-
   HiDeviceInfoSource contract, providing app metadata, device model, OS info,
   and User-Agent building.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_core_device
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_core_device
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - device-info
   - package-info

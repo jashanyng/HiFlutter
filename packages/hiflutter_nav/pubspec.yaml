@@ -4,8 +4,8 @@ description: >-
   deep-link allow-listing, and router-agnostic navigation and link-opening
   interfaces.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_nav
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_nav
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - navigation
   - router

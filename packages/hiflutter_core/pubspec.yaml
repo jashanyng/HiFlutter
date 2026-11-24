@@ -5,8 +5,8 @@ description: >-
   formatting, link detection, a dispose-safe value notifier, and app and
   device information contracts with User-Agent building.
 version: 0.1.0
-repository: https://github.com/pcfprio/HiFlutter/tree/main/packages/hiflutter_core
-issue_tracker: https://github.com/pcfprio/HiFlutter/issues
+repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_core
+issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
   - error-handling
   - formatting
