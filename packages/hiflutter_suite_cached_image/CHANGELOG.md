@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.0.1
 
 - Initial release: `HiCachedImage` and `HiImageViewer` backed by
   `cached_network_image`, with empty-URL short-circuiting, compact Material 3

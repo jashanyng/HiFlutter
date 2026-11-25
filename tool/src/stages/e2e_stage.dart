@@ -56,7 +56,7 @@ class E2eStage implements CheckStage {
     }
 
     final version = netPkg.version!;
-    final e2eTag = 'v$version-e2e';
+    final e2eTag = version;
     final toolBin = p.join(toolPkg.dir, 'bin', 'hiflutter.dart');
     final packageConfig = p.join(
       context.root,
@@ -97,7 +97,7 @@ class E2eStage implements CheckStage {
       for (final gitArgs in [
         ['config', 'user.name', 'HiFlutter E2E'],
         ['config', 'user.email', 'e2e@hiflutter.local'],
-        ['tag', '-a', e2eTag, '-m', 'e2e'],
+        ['tag', '-a', '-f', e2eTag, '-m', 'Release $e2eTag'],
       ]) {
         if (await context.exec(
               'git',

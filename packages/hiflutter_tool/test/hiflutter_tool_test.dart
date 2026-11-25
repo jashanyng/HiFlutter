@@ -304,7 +304,7 @@ dependency_overrides:
       final result = await ws.run([
         'mode',
         'pin',
-        'v99.99.99',
+        '99.99.99',
         '--project-dir',
         ws.consumerDir,
         '--git-url',
@@ -763,8 +763,8 @@ class _TestWorkspace {
   final String consumerDir;
   final String commitSha;
 
-  final String annotatedTag = 'v1.0.0';
-  final String lightweightTag = 'v1.0.0-light';
+  final String annotatedTag = '1.0.0';
+  final String lightweightTag = '1.0.1';
 
   static Future<_TestWorkspace> create() async {
     final root = await Directory.systemTemp.createTemp('hiflutter_tool_test_');
@@ -777,8 +777,8 @@ class _TestWorkspace {
     await _git(repoDir, ['config', 'user.email', 'test@example.com']);
     await _git(repoDir, ['add', '.']);
     await _git(repoDir, ['commit', '-q', '-m', 'Initial packages']);
-    await _git(repoDir, ['tag', '-a', 'v1.0.0', '-m', 'Release v1.0.0']);
-    await _git(repoDir, ['tag', 'v1.0.0-light']);
+    await _git(repoDir, ['tag', '-a', '1.0.0', '-m', 'Release 1.0.0']);
+    await _git(repoDir, ['tag', '1.0.1']);
     final sha = (await _git(repoDir, ['rev-parse', 'HEAD'])).trim();
 
     Directory(p.join(consumerDir, 'lib')).createSync(recursive: true);

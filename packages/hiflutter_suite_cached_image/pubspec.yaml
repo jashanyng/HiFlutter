@@ -3,7 +3,7 @@ description: >-
   cached_network_image adapter for HiFlutter: provides HiCachedImage and
   HiImageViewer backed by Material 3 components without exposing third-party
   types.
-version: 0.1.0
+version: 0.0.1
 repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_suite_cached_image
 issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
@@ -22,8 +22,8 @@ dependencies:
   cached_network_image: ^4.0.7
   flutter:
     sdk: flutter
-  hiflutter_base: ^0.1.0
-  hiflutter_suite: ^0.1.0
+  hiflutter_base: ^0.0.1
+  hiflutter_suite: ^0.0.1
   material_ui: ^1.11.1
 
 dev_dependencies:

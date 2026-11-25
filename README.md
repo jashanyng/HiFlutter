@@ -6,7 +6,7 @@
 
 ## 包一览
 
-仓库根目录为 pub workspace，所有可发布包统一版本号 `0.1.0`；另含不发布的示例 App `apps/showcase`。
+仓库根目录为 pub workspace，所有可发布包统一版本号 `0.0.1`；另含不发布的示例 App `apps/showcase`。
 
 | 家族 / 角色 | 包名 | 平台 | 核心能力与预置依赖 | 纳入伞包 `hiflutter` |
 | --- | --- | --- | --- | --- |
@@ -38,9 +38,9 @@
 
 ```yaml
 dependencies:
-  hiflutter: ^0.1.0
+  hiflutter: ^0.0.1
   # 按需选装可选包：
-  # hiflutter_riverpod: ^0.1.0
+  # hiflutter_riverpod: ^0.0.1
 ```
 
 全局安装 `hiflutter` CLI（与具体消费项目所处模式解耦）：
@@ -56,8 +56,8 @@ dart pub global activate --source path /path/to/HiFlutter/packages/hiflutter_too
 hiflutter mode source
 flutter pub get
 
-# 2. 锁定模式：发版分支锁定到某次 HiFlutter 发版 tag（pub.dev 尚未正式发布期间使用）
-hiflutter mode pin v0.1.0
+# 2. 锁定模式：发版分支锁定到某次 HiFlutter 发版 tag（发版标签为不带 v 前缀的裸 x.y.z；pub.dev 尚未正式发布期间使用）
+hiflutter mode pin 0.0.1
 flutter pub get
 
 # 3. 发布模式：清除工具托管的 HiFlutter 覆盖条目，回退到 pub.dev 解析

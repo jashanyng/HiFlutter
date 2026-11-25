@@ -64,7 +64,7 @@ HiFlutter 采用 Dart pub workspace 管理多包架构（详见 [ADR-0004](../ad
 
 ## 明确不预置的能力
 
-以下库或能力在 v0.1.0 设计中刻意排除，不作为仓库内置依赖引入：
+以下库或能力在初始基线（0.0.1）设计中刻意排除，不作为仓库内置依赖引入：
 
 - 商业厂商 SDK（友盟、Firebase、Sentry、EMAS 等）：需实际使用场景驱动再按单个独立适配包接入，不进入伞包。
 - 第三方 `logger`、`toast` 与下拉刷新库：已由 `hiflutter_base` 日志与 `hiflutter_suite` 原生实现覆盖。

@@ -20,7 +20,8 @@ and verifies readiness before release builds.
   ```sh
   hiflutter mode pin <tag> [--project-dir <dir>] [--git-url <url>]
   ```
-  Shallow-clones `<tag>` from `<url>` (defaulting to
+  Shallow-clones `<tag>` (HiFlutter release tags use bare `x.y.z` without a
+  `v` prefix, such as `0.0.1` or `1.0.0`) from `<url>` (defaulting to
   `https://github.com/jashanyng/HiFlutter.git`), computes the transitive closure of
   `hiflutter*` packages at that tag, and writes `git` overrides with `url`,
   `ref`, and `path` into `pubspec_overrides.yaml`.

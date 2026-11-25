@@ -3,7 +3,7 @@ description: >-
   device_info_plus and package_info_plus implementation of the HiFlutter
   HiDeviceInfoSource contract, providing app metadata, device model, OS info,
   and User-Agent building.
-version: 0.1.0
+version: 0.0.1
 repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_core_device
 issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
@@ -22,8 +22,8 @@ dependencies:
   device_info_plus: ^13.3.0
   flutter:
     sdk: flutter
-  hiflutter_base: ^0.1.0
-  hiflutter_core: ^0.1.0
+  hiflutter_base: ^0.0.1
+  hiflutter_core: ^0.0.1
   package_info_plus: ^10.2.2
 
 dev_dependencies:

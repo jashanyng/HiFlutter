@@ -44,4 +44,4 @@
      - `hiflutter_suite_cached_image`：注入可控的缓存/图片加载边界并在 Widget 测试中校验状态视图与点击交互。
 3. **共享契约测试**：同一契约的内存实现（如 `HiKeyValueStore.memory()`）与各平台适配实现应运行同一套共享契约行为测试套件，确保行为等价与安全守卫（如凭据键拒绝、路径穿越拒绝）一致。
 4. **Workspace 测试执行位置**：在 Flutter pub workspace 中涉及包内资源或 shader（如 `apps/showcase` 加载 `material_ui` 资源）的 Widget 测试，须在对应包根目录运行 `flutter test`，或统一在仓库根目录执行 `dart run tool/check.dart --only test`（`TestStage` 会按工作区成员逐包切换工作目录执行测试）。
-5. **暂不引入黄金图测试**：跨机器字体与像素渲染存在环境差异，v0.1.0 不强制黄金图测试，但要求每个公开 API 行为均有对应行为测试覆盖。
+5. **暂不引入黄金图测试**：跨机器字体与像素渲染存在环境差异，当前制作期（0.0.1 起步）不强制黄金图测试，但要求每个公开 API 行为均有对应行为测试覆盖。

@@ -1,6 +1,6 @@
 # 消费项目集成模式与接入规则
 
-消费项目在自身 `pubspec.yaml` 中只维护一份静态的 HiFlutter 依赖声明（如 `^0.1.0`），通过 `hiflutter` CLI 工具读写 `pubspec_overrides.yaml` 在**源码模式**、**锁定模式**与**发布模式**之间切换（详见 [ADR-0003](../adr/0003-three-integration-modes.md)）。
+消费项目在自身 `pubspec.yaml` 中只维护一份静态的 HiFlutter 依赖声明（如 `^0.0.1`），通过 `hiflutter` CLI 工具读写 `pubspec_overrides.yaml` 在**源码模式**、**锁定模式**与**发布模式**之间切换（详见 [ADR-0003](../adr/0003-three-integration-modes.md)）。
 
 ## 工具安装
 
@@ -54,6 +54,7 @@ hiflutter mode pin <tag> [--project-dir|-p <dir>] [--git-url <url>]
 flutter pub get
 ```
 
+- `<tag>` 采用不带 `v` 前缀的裸 `x.y.z` 发版标签（如 `0.0.1`、`1.0.0`）。
 - 默认 Git 仓库地址为 `https://github.com/jashanyng/HiFlutter.git`（可通过 `--git-url` 覆盖为本地克隆路径或镜像 URL，便于离线与 CI 演练）。
 - 工具会浅克隆指定 `<tag>`，基于该版本快照计算完整传递依赖闭包，并在 `pubspec_overrides.yaml` 写入模式头 `# hiflutter-tool:mode=pin tag=<tag> url=<gitUrl>` 与对应的 `git`（`url`、`ref`、`path`）覆盖，防止 pub 前往 pub.dev 查找尚未公开的包。
 
@@ -92,11 +93,11 @@ hiflutter check [--release] [--project-dir|-p <dir>] [--hiflutter-dir <dir>]
 ```markdown
 ## HiFlutter 依赖与发布门禁
 
-- 在 `pubspec.yaml` 中只声明发布后同样有效的 HiFlutter 版本依赖（如 `^0.1.0`），禁止直接把 `path:` 或 `git:` 写进 `pubspec.yaml`。
+- 在 `pubspec.yaml` 中只声明发布后同样有效的 HiFlutter 版本依赖（如 `^0.0.1`），禁止直接把 `path:` 或 `git:` 写进 `pubspec.yaml`。
 - 禁止手工改写 `pubspec_overrides.yaml` 中 `# BEGIN HIFLUTTER MANAGED` 与 `# END HIFLUTTER MANAGED` 区块内的条目，一律通过 `hiflutter` CLI 维护：
   - 日常开发与效率库联调：`hiflutter mode source && flutter pub get`
-  - 冻结到指定 HiFlutter 发版版本：`hiflutter mode pin <tag> && flutter pub get`（须将 `pubspec_overrides.yaml` 与 `pubspec.lock` 一并提交以保证可复现构建）
+  - 冻结到指定 HiFlutter 发版版本：`hiflutter mode pin <tag> && flutter pub get`（`<tag>` 采用不带 `v` 前缀的裸 `x.y.z` 发版标签，如 `0.0.1`、`1.0.0`；须将 `pubspec_overrides.yaml` 与 `pubspec.lock` 一并提交以保证可复现构建）
   - 切换为 pub.dev 正式版本：`hiflutter mode hosted && flutter pub get`
 - 在构建 Release / 测试分发包（APK、AAB、IPA）或合并发布分支前，CI 与本地构建前必须先执行 `hiflutter check --release`；源码模式下禁止打包发布。
-- 升级 HiFlutter 锁定 tag 时，按目标版本区间检查所依赖包的 `CHANGELOG.md` 迁移要点（`0.x` 未发布期不保证跨 minor 向后兼容）。
+- 升级 HiFlutter 锁定 tag 时，按目标版本区间检查所依赖包的 `CHANGELOG.md` 迁移要点（制作期与改进完善期不保留代码向后兼容，须对照 CHANGELOG.md 同步适配）。
 ```

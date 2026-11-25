@@ -2,7 +2,7 @@ name: hiflutter_suite
 description: >-
   Material 3 UI components of HiFlutter: localized state views, pagination
   controller and list view, and visual metrics aligned across platforms.
-version: 0.1.0
+version: 0.0.1
 repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_suite
 issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
@@ -22,8 +22,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  hiflutter_base: ^0.1.0
-  hiflutter_core: ^0.1.0
+  hiflutter_base: ^0.0.1
+  hiflutter_core: ^0.0.1
   intl: ^0.20.2
   material_ui: ^1.11.1
 

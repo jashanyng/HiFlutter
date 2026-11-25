@@ -3,7 +3,7 @@ description: >-
   Navigation contracts of HiFlutter: typed routes, a URL route table,
   deep-link allow-listing, and router-agnostic navigation and link-opening
   interfaces.
-version: 0.1.0
+version: 0.0.1
 repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_nav
 issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:

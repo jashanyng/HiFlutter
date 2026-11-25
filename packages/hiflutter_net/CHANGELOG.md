@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.0.1
 
 - Initial release: `HiHttpClient` with `get`, `post`, `put`, `patch`,
   `delete`, `head` and `request`, `defaultTimeout`, `HiCancelToken`,

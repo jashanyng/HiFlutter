@@ -3,7 +3,7 @@ description: >-
   Pure Dart networking contract of HiFlutter: a transport-agnostic HTTP
   client with interceptors and an unauthorized callback, a configurable
   response envelope decoder, paged results and a connectivity contract.
-version: 0.1.0
+version: 0.0.1
 repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_net
 issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
@@ -18,7 +18,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  hiflutter_base: ^0.1.0
+  hiflutter_base: ^0.0.1
 
 dev_dependencies:
   lints: ^6.1.0

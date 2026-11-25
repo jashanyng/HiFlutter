@@ -7,18 +7,26 @@ import 'package:yaml_edit/yaml_edit.dart';
 
 import 'workspace.dart';
 
-/// Moves every HiFlutter package to one version and returns an exit code.
+/// Moves every HiFlutter package to one bare `x.y.z` version and returns an exit code.
 ///
-/// Usage: `dart run tool/bump_version.dart [--root <dir>] <version>`.
+/// Usage: `dart run tool/bump_version.dart [--root <dir>] [--allow-xy-bump] <version>`.
+///
+/// By default only pure patch (`z`) increments are allowed. Changing `x` or `y`
+/// requires explicit `--allow-xy-bump` confirmation from the maintainer.
 ///
 /// For every workspace member it rewrites constraints on other members to
 /// `^<version>`; for every publishable member it also sets `version`.
 Future<int> runBumpVersion(List<String> args, {StringSink? out}) async {
   final sink = out ?? stdout;
   const usage =
-      'Usage: dart run tool/bump_version.dart [--root <dir>] <version>';
+      'Usage: dart run tool/bump_version.dart [--root <dir>] [--allow-xy-bump] <version>';
   final parser = ArgParser()
     ..addOption('root', help: 'Workspace root to bump.')
+    ..addFlag(
+      'allow-xy-bump',
+      negatable: false,
+      help: 'Allow changing major (x) or minor (y) version with maintainer approval.',
+    )
     ..addFlag('help', abbr: 'h', negatable: false);
 
   final ArgResults options;
@@ -36,11 +44,16 @@ Future<int> runBumpVersion(List<String> args, {StringSink? out}) async {
     sink.writeln('Expected exactly one version.\n\n$usage');
     return 64;
   }
+  final rawVersion = options.rest.single;
   final Version version;
+  if (!_bareVersion.hasMatch(rawVersion)) {
+    sink.writeln('Not a bare x.y.z version: "$rawVersion"');
+    return 64;
+  }
   try {
-    version = Version.parse(options.rest.single);
+    version = Version.parse(rawVersion);
   } on FormatException {
-    sink.writeln('Not a semantic version: "${options.rest.single}"');
+    sink.writeln('Not a bare x.y.z version: "$rawVersion"');
     return 64;
   }
 
@@ -63,6 +76,28 @@ Future<int> runBumpVersion(List<String> args, {StringSink? out}) async {
       sink.writeln('  - $line');
     }
     return 1;
+  }
+
+  final allowXyBump = options.flag('allow-xy-bump');
+  if (!allowXyBump) {
+    final xyChanges = [
+      for (final pkg in packages)
+        if (pkg.publishable && pkg.version != null)
+          if (Version.parse(pkg.version!) case final current
+              when current.major != version.major ||
+                  current.minor != version.minor)
+            '${pkg.name}: $current -> $version',
+    ];
+    if (xyChanges.isNotEmpty) {
+      sink.writeln(
+        'Changing major (x) or minor (y) version requires explicit '
+        '--allow-xy-bump with maintainer approval:',
+      );
+      for (final line in xyChanges) {
+        sink.writeln('  - $line');
+      }
+      return 1;
+    }
   }
 
   for (final pkg in packages) {
@@ -89,6 +124,9 @@ Future<int> runBumpVersion(List<String> args, {StringSink? out}) async {
 
 /// Entry written for a package that changed nothing in this release.
 const alignedEntry = '- Version alignment (no changes).';
+
+/// Matches a bare `x.y.z` semantic version without a `v` prefix or suffixes.
+final _bareVersion = RegExp(r'^\d+\.\d+\.\d+$');
 
 /// Header of the section collecting changes not yet in a release.
 final _unreleased = RegExp(r'^## Unreleased[ \t]*$', multiLine: true);

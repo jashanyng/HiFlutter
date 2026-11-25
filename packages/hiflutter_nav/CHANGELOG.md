@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.0.1
 
 - Initial release: typed `HiRoute` with `HiRouteParams`, the URL
   `HiRouteTable`, the `HiDeepLinkGuard` allow-list, and the `HiNavigator`,

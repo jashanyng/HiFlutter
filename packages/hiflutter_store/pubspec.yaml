@@ -2,7 +2,7 @@ name: hiflutter_store
 description: >-
   Pure Dart storage contracts of HiFlutter: key-value, secure value and file
   stores with in-memory implementations and credential-key protection.
-version: 0.1.0
+version: 0.0.1
 repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_store
 issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
@@ -16,7 +16,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  hiflutter_base: ^0.1.0
+  hiflutter_base: ^0.0.1
 
 dev_dependencies:
   lints: ^6.1.0

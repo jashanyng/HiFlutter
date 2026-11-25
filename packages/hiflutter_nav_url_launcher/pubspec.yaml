@@ -2,7 +2,7 @@ name: hiflutter_nav_url_launcher
 description: >-
   url_launcher implementation of the HiFlutter link-opening contract, for
   opening web pages and other apps from Flutter.
-version: 0.1.0
+version: 0.0.1
 repository: https://github.com/jashanyng/HiFlutter/tree/main/packages/hiflutter_nav_url_launcher
 issue_tracker: https://github.com/jashanyng/HiFlutter/issues
 topics:
@@ -19,8 +19,8 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-  hiflutter_base: ^0.1.0
-  hiflutter_nav: ^0.1.0
+  hiflutter_base: ^0.0.1
+  hiflutter_nav: ^0.0.1
   url_launcher: ^6.3.3
 
 dev_dependencies:

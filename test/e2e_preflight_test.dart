@@ -265,4 +265,69 @@ void main() {
       },
     );
   });
+
+  group('E2eStage bare tag rehearsal', () {
+    late FixtureRepo repo;
+
+    tearDown(() => repo.dispose());
+
+    test(
+      'uses bare x.y.z tag without v prefix for git tag and mode pin',
+      () async {
+        repo = await FixtureRepo.create(
+          packages: ['hiflutter_net', 'hiflutter_tool'],
+          version: '0.0.1',
+        );
+        repo.write(
+          'packages/hiflutter_tool/bin/hiflutter.dart',
+          'void main() {}\n',
+        );
+        repo.write(
+          '.dart_tool/package_config.json',
+          jsonEncode({
+            'configVersion': 2,
+            'packages': [
+              {'name': 'hiflutter_net', 'rootUri': '../packages/hiflutter_net'},
+              {
+                'name': 'hiflutter_tool',
+                'rootUri': '../packages/hiflutter_tool',
+              },
+            ],
+          }),
+        );
+
+        var seenPin = false;
+        final context = _RecordingContext(
+          root: repo.root,
+          out: StringBuffer(),
+          onExec: (call) async {
+            if (call.arguments.contains('pin')) {
+              seenPin = true;
+            }
+            if (call.arguments.contains('check') &&
+                call.arguments.contains('--release') &&
+                !seenPin) {
+              return 1;
+            }
+            return 0;
+          },
+        );
+
+        final result = await E2eStage().run(context);
+
+        expect(result.passed, isTrue, reason: result.problems.join('\n'));
+        final tagCall = context.calls.firstWhere(
+          (c) => c.executable == 'git' && c.arguments.contains('tag'),
+        );
+        expect(tagCall.arguments, contains('0.0.1'));
+        expect(tagCall.arguments, isNot(contains('v0.0.1-e2e')));
+
+        final pinCall = context.calls.firstWhere(
+          (c) => c.executable == 'dart' && c.arguments.contains('pin'),
+        );
+        final pinIndex = pinCall.arguments.indexOf('pin');
+        expect(pinCall.arguments[pinIndex + 1], '0.0.1');
+      },
+    );
+  });
 }

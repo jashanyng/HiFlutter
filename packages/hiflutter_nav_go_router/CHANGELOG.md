@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.0.1
 
 - Initial release: `HiGoRouterNavigator`, a go_router-backed `HiNavigator`
   generated from a `HiRouteTable`, with fallback redirects and deep-link

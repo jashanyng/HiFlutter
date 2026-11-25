@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.0.1
 
 - Initial release: `HiErrorCapture`, `HiSafeValueNotifier`, `HiFormat`
   (`number`, `compact`, `fileSize`), `HiTextSegment` and `HiLinkDetector`,

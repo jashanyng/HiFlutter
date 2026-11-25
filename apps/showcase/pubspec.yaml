@@ -13,11 +13,11 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_riverpod: ^3.5.0
-  hiflutter: ^0.1.0
-  hiflutter_net_connectivity: ^0.1.0
-  hiflutter_riverpod: ^0.1.0
-  hiflutter_suite_cached_image: ^0.1.0
-  hiflutter_suite_webview: ^0.1.0
+  hiflutter: ^0.0.1
+  hiflutter_net_connectivity: ^0.0.1
+  hiflutter_riverpod: ^0.0.1
+  hiflutter_suite_cached_image: ^0.0.1
+  hiflutter_suite_webview: ^0.0.1
   material_ui: ^1.11.1
 
 dev_dependencies:

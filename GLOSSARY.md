@@ -61,7 +61,7 @@ _Avoid_: 小版本更新
 _Avoid_: 大版本更新
 
 **发版**：
-为 HiFlutter 的一个版本号打上 git tag，使该版本可被锁定模式使用。
+为 HiFlutter 的一个版本号打上同名裸 x.y.z git tag（不带 v 前缀），使该版本可被锁定模式使用。
 _Avoid_: 发布、上线
 
 **发布**：

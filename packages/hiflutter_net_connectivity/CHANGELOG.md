@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.0.1
 
 - Initial release: `HiPlusConnectivity`, a `connectivity_plus`-backed
   `HiConnectivity` adapter that maps connectivity checks and streams to

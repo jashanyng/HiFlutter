@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.0.1
 
 - Initial release: `HiKeyValueStore` with credential-key protection and
   JSON values, `HiSecureStore`, `HiFileStore` with path traversal
