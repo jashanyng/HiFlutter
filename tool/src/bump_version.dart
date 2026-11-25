@@ -5,7 +5,10 @@ import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:yaml_edit/yaml_edit.dart';
 
+import 'root_changelog.dart';
 import 'workspace.dart';
+
+export 'root_changelog.dart' show rootAlignedEntry;
 
 /// Moves every HiFlutter package to one bare `x.y.z` version and returns an exit code.
 ///
@@ -15,8 +18,15 @@ import 'workspace.dart';
 /// requires explicit `--allow-xy-bump` confirmation from the maintainer.
 ///
 /// For every workspace member it rewrites constraints on other members to
-/// `^<version>`; for every publishable member it also sets `version`.
-Future<int> runBumpVersion(List<String> args, {StringSink? out}) async {
+/// `^<version>`; for every publishable member it also sets `version` and
+/// updates its package `CHANGELOG.md`. When a root `CHANGELOG.md` exists, it
+/// also archives `## [Unreleased]` into `## [<version>] - YYYY-MM-DD` while
+/// keeping `## [Unreleased]` at the top (using [now] when provided).
+Future<int> runBumpVersion(
+  List<String> args, {
+  StringSink? out,
+  DateTime? now,
+}) async {
   final sink = out ?? stdout;
   const usage =
       'Usage: dart run tool/bump_version.dart [--root <dir>] [--allow-xy-bump] <version>';
@@ -100,6 +110,12 @@ Future<int> runBumpVersion(List<String> args, {StringSink? out}) async {
     }
   }
 
+  final changelogError = validateRootChangelogForArchive(root, '$version');
+  if (changelogError != null) {
+    sink.writeln(changelogError);
+    return 1;
+  }
+
   for (final pkg in packages) {
     final file = File(p.join(pkg.dir, 'pubspec.yaml'));
     final editor = YamlEditor(file.readAsStringSync());
@@ -118,6 +134,7 @@ Future<int> runBumpVersion(List<String> args, {StringSink? out}) async {
       '${pkg.name}: ${pkg.publishable ? '$version' : 'constraints'}',
     );
   }
+  archiveRootChangelog(root, '$version', now ?? DateTime.now());
   sink.writeln('Bumped ${packages.length} package(s) to $version.');
   return 0;
 }

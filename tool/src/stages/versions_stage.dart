@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
+import '../root_changelog.dart';
 import '../stage.dart';
 import '../workspace.dart';
 
-/// Enforces the single shared version of all publishable packages.
+/// Enforces the single shared version of all publishable packages as well as
+/// the root `CHANGELOG.md` and `docs/compatibility.md` governance documents.
 class VersionsStage implements CheckStage {
   @override
   String get id => 'versions';
@@ -59,6 +61,13 @@ class VersionsStage implements CheckStage {
         _checkInterPackageConstraints(pkg, names, expected, problems);
       }
     }
+
+    problems.addAll(
+      validateRootGovernanceDocs(
+        context.root,
+        sharedVersion: byVersion.length <= 1 ? sharedVersion : null,
+      ),
+    );
     return StageResult.of(problems);
   }
 

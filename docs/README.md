@@ -5,6 +5,8 @@
 ## 入口与概览
 
 - [项目说明（README）](../README.md)：面向对象消费项目的使用指南、包一览、集成模式快速上手与仓库常用命令
+- [变更日志（CHANGELOG.md）](../CHANGELOG.md)：全仓版本更新说明唯一事实源（各子包英文 `packages/*/CHANGELOG.md` 仍用于 pub.dev 发布）
+- [兼容性与升级指南（compatibility.md）](compatibility.md)：环境与依赖兼容矩阵、演进阶段兼容契约及消费项目跨模式升级迁移步骤
 - [项目级智能体规则（AGENTS.md）](../AGENTS.md)：仓库硬边界、开发验证门禁与 `CLAUDE.md` 引入入口
 - [领域术语表（GLOSSARY.md）](../GLOSSARY.md)：统一定义包结构、集成模式、版本与可观测性领域术语及禁用同义词
 

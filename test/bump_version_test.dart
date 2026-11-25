@@ -181,4 +181,177 @@ dependencies:
     expect(run.output, contains('hiflutter_base is already at 0.2.0'));
     expect(repo.read('packages/hiflutter_base/CHANGELOG.md'), before);
   });
+
+  test('archives root CHANGELOG.md Unreleased section with date while keeping top Unreleased', () async {
+    repo = await FixtureRepo.create(
+      packages: ['hiflutter_base', 'hiflutter_net'],
+    );
+    repo.write('CHANGELOG.md', '''
+# 变更日志（Changelog）
+
+说明段落。
+
+## [Unreleased]
+
+- 新增 `HiRetryPolicy` 重试策略。
+
+## [0.1.0]
+
+- Fixture release.
+''');
+
+    final run = await repo.bumpVersion(['0.1.1']);
+
+    expect(run.exitCode, 0, reason: '$run');
+    final now = DateTime.now();
+    final today =
+        '${now.year.toString().padLeft(4, '0')}-'
+        '${now.month.toString().padLeft(2, '0')}-'
+        '${now.day.toString().padLeft(2, '0')}';
+    expect(repo.read('CHANGELOG.md'), '''
+# 变更日志（Changelog）
+
+说明段落。
+
+## [Unreleased]
+
+## [0.1.1] - $today
+
+- 新增 `HiRetryPolicy` 重试策略。
+
+## [0.1.0]
+
+- Fixture release.
+''');
+    final check = await repo.check(['--only', 'versions']);
+    expect(check.exitCode, 0, reason: '$check');
+  });
+
+  test(
+    'fills default alignment entry when root CHANGELOG.md Unreleased is empty',
+    () async {
+      repo = await FixtureRepo.create(
+        packages: ['hiflutter_base', 'hiflutter_net'],
+      );
+
+      final run = await repo.bumpVersion(['0.1.1']);
+
+      expect(run.exitCode, 0, reason: '$run');
+      final now = DateTime.now();
+      final today =
+          '${now.year.toString().padLeft(4, '0')}-'
+          '${now.month.toString().padLeft(2, '0')}-'
+          '${now.day.toString().padLeft(2, '0')}';
+      expect(repo.read('CHANGELOG.md'), '''
+# 变更日志（Changelog）
+
+## [Unreleased]
+
+## [0.1.1] - $today
+
+- 版本号对齐（无行为变更）。
+
+## [0.1.0]
+
+- Fixture release.
+''');
+      final check = await repo.check(['--only', 'versions']);
+      expect(check.exitCode, 0, reason: '$check');
+    },
+  );
+
+  test(
+    'fails without mutating packages when root CHANGELOG.md is invalid',
+    () async {
+      repo = await FixtureRepo.create(version: '0.0.1');
+      repo.write(
+        'CHANGELOG.md',
+        '# 变更日志（Changelog）\n\n## [0.0.1]\n\n- 缺失 Unreleased。\n',
+      );
+      final pubspecBefore = repo.read('packages/hiflutter_base/pubspec.yaml');
+
+      final run = await repo.bumpVersion(['0.0.2']);
+
+      expect(run.exitCode, 1, reason: '$run');
+      expect(run.output, contains('Unreleased'));
+      expect(repo.read('packages/hiflutter_base/pubspec.yaml'), pubspecBefore);
+    },
+  );
+
+  test('preserves fenced code blocks containing Unreleased and target version examples', () async {
+    repo = await FixtureRepo.create(
+      packages: ['hiflutter_base', 'hiflutter_net'],
+    );
+    repo.write('CHANGELOG.md', '''
+# 变更日志（Changelog）
+
+## [Unreleased]
+
+- 新增围栏示例与升级说明：
+
+````markdown
+## [Unreleased]
+
+## [0.1.1]
+
+```
+## [0.1.1]
+```
+````
+
+- 示例后半段说明。
+
+## [0.1.0]
+
+~~~markdown
+## [Unreleased]
+
+## [0.1.1]
+~~~
+
+- Fixture release.
+''');
+
+    final run = await repo.bumpVersion(['0.1.1']);
+
+    expect(run.exitCode, 0, reason: '$run');
+    final now = DateTime.now();
+    final today =
+        '${now.year.toString().padLeft(4, '0')}-'
+        '${now.month.toString().padLeft(2, '0')}-'
+        '${now.day.toString().padLeft(2, '0')}';
+    expect(repo.read('CHANGELOG.md'), '''
+# 变更日志（Changelog）
+
+## [Unreleased]
+
+## [0.1.1] - $today
+
+- 新增围栏示例与升级说明：
+
+````markdown
+## [Unreleased]
+
+## [0.1.1]
+
+```
+## [0.1.1]
+```
+````
+
+- 示例后半段说明。
+
+## [0.1.0]
+
+~~~markdown
+## [Unreleased]
+
+## [0.1.1]
+~~~
+
+- Fixture release.
+''');
+    final check = await repo.check(['--only', 'versions']);
+    expect(check.exitCode, 0, reason: '$check');
+  });
 }

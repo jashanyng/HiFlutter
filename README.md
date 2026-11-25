@@ -2,7 +2,7 @@
 
 跨项目共用的 Flutter 效率库（Dart `^3.14.0` / Flutter `>=3.50.0`，一等平台为 Android 与 iOS），采用 Dart pub workspace 多包架构，按“契约包 + 适配包”的包家族组织，底层不绑定状态管理，提供面向消费项目的三种无侵入集成模式与统一门禁工具链。
 
-详细规则、架构决策与工程规范请查阅 [文档索引](docs/README.md) 与 [领域术语表](GLOSSARY.md)。
+详细规则、架构决策与工程规范请查阅 [文档索引](docs/README.md)、[变更日志](CHANGELOG.md)、[兼容性与升级指南](docs/compatibility.md) 与 [领域术语表](GLOSSARY.md)。
 
 ## 包一览
 

@@ -27,11 +27,15 @@ dart run tool/bump_version.dart [--root <dir>] [--allow-xy-bump] <version>
 
 1. 校验 `<version>` 必须是不带 `v` 前缀的裸 `x.y.z` 三段非负整数格式，且严格大于当前全部可发布包版本；格式或参数错误返回 `64`，版本未前进返回 `1`。
 2. 默认仅允许保持 `x`、`y` 不变并递增 `z`；修改 `x` 或 `y` 须经维护者明确同意并显式传入 `--allow-xy-bump`，否则脚本以退出码 `1` 阻断且不改动任何文件。
-3. 遍历工作区全部成员：
+3. 遍历工作区全部成员与根治理文档：
    - 对所有可发布包更新 `pubspec.yaml` 的 `version` 为 `<version>`；
    - 对所有成员（包含非发布成员）更新 `dependencies` 和 `dev_dependencies` 中对其它工作区成员的约束为 `^<version>`；
-   - 对所有可发布包更新 `CHANGELOG.md`：若文件顶部包含 `## Unreleased` 标题，直接替换为 `## <version>`；若无未发布条目，则在顶部插入 `## <version>\n\n- Version alignment (no changes).`。
-4. **注意事项**：`hiflutter_tool` 源码与文档中不会写死版本号占位符，运行 `bump_version.dart` 不会改动业务代码。日常在 `dev` 开发阶段若有可感知行为变更，应随 PR 在对应包的 `CHANGELOG.md` 顶部维护 `## Unreleased` 节。
+   - 对所有可发布包更新 `packages/*/CHANGELOG.md`（用于 pub.dev 展示，保持英文）：若文件顶部包含 `## Unreleased` 标题，直接替换为 `## <version>`；若无未发布条目，则在顶部插入 `## <version>\n\n- Version alignment (no changes).`。
+   - 同步更新全仓唯一事实源——根目录 `CHANGELOG.md`：若存在 `## [Unreleased]` 节，将其内容归档为 `## [<version>] - YYYY-MM-DD`（当 `## [Unreleased]` 为空时填入 `- 版本号对齐（无行为变更）。`），并在顶部保留 `## [Unreleased]` 节等待后续变更累积。
+4. **注意事项**：
+   - `hiflutter_tool` 源码与文档中不会写死版本号占位符，运行 `bump_version.dart` 不会改动业务代码。
+   - 日常在开发分支若有可感知行为变更，应随 PR 同步更新根目录 `CHANGELOG.md` 的 `## [Unreleased]` 节，并在涉及包变更时按需更新对应包的英文 `packages/*/CHANGELOG.md` `## Unreleased` 节；若涉及运行环境、兼容性契约或跨版本迁移路径变更，须同步更新 [兼容性与升级指南](../compatibility.md)。
+   - `dart run tool/check.dart` 的 `versions` 阶段会强制校验：全部可发布包版本一致、包间约束对齐、各子包 `CHANGELOG.md` 含 `## <version>`、根目录 `CHANGELOG.md` 含 `## [Unreleased]` 与 `## [<version>]`（允许带归档日期），以及 `docs/compatibility.md` 存在且非空。
 
 ## 发版（Git Tag）与发布（pub.dev）
 

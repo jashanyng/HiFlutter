@@ -4,7 +4,7 @@
 
 ## 语言约定
 
-- 项目级智能体规则、领域与协作/工程文档（`AGENTS.md`、`README.md`、`docs/**/*.md`、`GLOSSARY.md`、Issue / PR / Spec 正文与评论等）一律使用简体中文撰写；命令、路径、代码标识符、仓库名与固定标签名（如 `needs-triage`、`deps-breaking`）保持原样。
+- 项目级智能体规则、领域与协作/工程文档（`AGENTS.md`、`README.md`、根目录 `CHANGELOG.md`、`docs/**/*.md`、`GLOSSARY.md`、Issue / PR / Spec 正文与评论等）一律使用简体中文撰写；命令、路径、代码标识符、仓库名与固定标签名（如 `needs-triage`、`deps-breaking`）保持原样。
 - 各独立包内的 `packages/*/README.md`、`packages/*/CHANGELOG.md`、dartdoc 注释与 Git 提交信息使用英文。
 - 领域术语以根目录 [GLOSSARY.md](GLOSSARY.md) 为准，不使用其中明确避免的同义词。
 
@@ -25,6 +25,7 @@
 
 - **当前阶段与基线**：当前处于**制作期**，未发布基线为裸格式 `0.0.1`（日常提交在分支演进，不打 Git 标签、不向 pub.dev 发布）。
 - **全仓单版本与裸格式**：全部 20 个可发布包共享同一无 `v` 前缀、无预发布/构建后缀的裸 `x.y.z` 版本（Git 标签同用裸 `x.y.z`）。
+- **变更日志与兼容性唯一事实源**：根目录 `CHANGELOG.md`（简体中文，包含 `## [Unreleased]` 与各版本条目）是全仓版本更新说明的唯一事实源（各子包英文 `packages/*/CHANGELOG.md` 仍用于 pub.dev 发布）；`docs/compatibility.md` 维护环境依赖矩阵、三阶段兼容契约与消费项目迁移指南。凡涉及可感知行为变更或兼容性影响，须同步维护根 `CHANGELOG.md` 的 `## [Unreleased]` 与 `docs/compatibility.md`；`dart run tool/bump_version.dart` 会自动将根 `CHANGELOG.md` 的 `## [Unreleased]` 归档为 `## [<version>] - YYYY-MM-DD`，`dart run tool/check.dart` 的 `versions` 阶段会校验两份文件的完整性。
 - **升版权限与脚本门禁**：AI 仅可递增 `z`，切换演进阶段、修改 `x`/`y`、打标签或发 pub.dev 须获维护者明确同意；统一改版工具 `dart run tool/bump_version.dart` 默认拦截未显式传入 `--allow-xy-bump` 的 `x`/`y` 变更。
 - **规则触发指针**：调整包家族/子包结构或接口兼容性、跨项目沉淀通用能力、评估维护期新增功能、或切换演进阶段/`x.y.z` 版本批次前，读取 [`../tech-specs/common/adoption.md#4-效率库准入规则与两阶段门禁`](../tech-specs/common/adoption.md#4-效率库准入规则与两阶段门禁)（本机无同级目录时回退读取 GitHub `jashanyng/tech-specs` 同路径；与消费项目集成模式门禁正交），发版与维护分支细则见 `docs/engineering/release.md`。
 
@@ -42,7 +43,7 @@
 - **调整包结构、新增包或改动依赖**：读 `docs/architecture/packages.md` 与 `docs/adr/0001`–`0004`
 - **引入、升级或排查第三方依赖冲突/破坏性更新**：读 `docs/engineering/dependencies.md`
 - **使用或维护消费项目集成模式与发布检查**：读 `docs/engineering/integration.md` 与 `docs/adr/0003-three-integration-modes.md`
-- **执行统一版本升级、发版或维护分支**：读 `docs/engineering/release.md`
+- **执行统一版本升级、发版或维护分支**：读 `docs/engineering/release.md`、根目录 `CHANGELOG.md` 与 `docs/compatibility.md`
 - **编写 Dart/Flutter 代码、异常、UI 组件或测试**：读 `docs/engineering/coding.md`
 - **改动日志、脱敏、统计/崩溃上报或全局错误捕获**：读 `docs/engineering/observability.md` 与 `docs/adr/0005-global-log-entry-exception.md`
 

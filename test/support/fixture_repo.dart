@@ -18,7 +18,8 @@ class FixtureRepo {
   final String root;
 
   /// Creates a clean workspace containing the given packages, each at
-  /// [version] with a matching CHANGELOG header.
+  /// [version] with matching package and root CHANGELOG headers and
+  /// `docs/compatibility.md`.
   static Future<FixtureRepo> create({
     List<String> packages = const ['hiflutter_base'],
     String version = '0.1.0',
@@ -34,6 +35,20 @@ workspace:
 ${packages.map((name) => '  - packages/$name').join('\n')}
 ''');
     repo.write(businessTermsPath, File(businessTermsPath).readAsStringSync());
+    repo.write('CHANGELOG.md', '''
+# 变更日志（Changelog）
+
+## [Unreleased]
+
+## [$version]
+
+- Fixture release.
+''');
+    repo.write('docs/compatibility.md', '''
+# 兼容性说明
+
+Fixture compatibility guide.
+''');
     for (final name in packages) {
       repo.addPackage(name, version: version);
     }

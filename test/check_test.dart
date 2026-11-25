@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 import '../tool/src/stages.dart';
@@ -184,6 +187,131 @@ dependencies:
           expect(run.output, contains('hiflutter_showcase -> hiflutter_base'));
         },
       );
+
+      test('fails when root CHANGELOG.md is missing', () async {
+        repo = await FixtureRepo.create();
+        File(p.join(repo.root, 'CHANGELOG.md')).deleteSync();
+
+        final run = await repo.check(['--only', 'versions']);
+
+        expect(run.exitCode, isNot(0), reason: '$run');
+        expect(run.output, contains('FAIL versions'));
+        expect(run.output, contains('CHANGELOG.md'));
+      });
+
+      test('fails when root CHANGELOG.md lacks ## [Unreleased]', () async {
+        repo = await FixtureRepo.create();
+        repo.write('CHANGELOG.md', '''
+# 变更日志（Changelog）
+
+## [0.1.0]
+
+- Fixture release.
+''');
+
+        final run = await repo.check(['--only', 'versions']);
+
+        expect(run.exitCode, isNot(0), reason: '$run');
+        expect(run.output, contains('FAIL versions'));
+        expect(run.output, contains('[Unreleased]'));
+      });
+
+      test('fails when root CHANGELOG.md lacks ## [<sharedVersion>]', () async {
+        repo = await FixtureRepo.create();
+        repo.write('CHANGELOG.md', '''
+# 变更日志（Changelog）
+
+## [Unreleased]
+
+## [0.0.1]
+
+- Old release.
+''');
+
+        final run = await repo.check(['--only', 'versions']);
+
+        expect(run.exitCode, isNot(0), reason: '$run');
+        expect(run.output, contains('FAIL versions'));
+        expect(run.output, contains('[0.1.0]'));
+      });
+
+      test('fails when docs/compatibility.md is missing or empty', () async {
+        repo = await FixtureRepo.create();
+        File(p.join(repo.root, 'docs', 'compatibility.md')).deleteSync();
+
+        final missingRun = await repo.check(['--only', 'versions']);
+
+        expect(missingRun.exitCode, isNot(0), reason: '$missingRun');
+        expect(missingRun.output, contains('FAIL versions'));
+        expect(missingRun.output, contains('docs/compatibility.md'));
+
+        repo.write('docs/compatibility.md', '   \n\n');
+        final emptyRun = await repo.check(['--only', 'versions']);
+
+        expect(emptyRun.exitCode, isNot(0), reason: '$emptyRun');
+        expect(emptyRun.output, contains('FAIL versions'));
+        expect(emptyRun.output, contains('docs/compatibility.md'));
+      });
+
+      test(
+        'ignores ## [Unreleased] and version headers inside fenced code blocks',
+        () async {
+          repo = await FixtureRepo.create();
+          repo.write('CHANGELOG.md', '''
+# 变更日志（Changelog）
+
+````markdown
+## [Unreleased]
+
+## [0.1.1]
+
+```
+假闭合行，不应提前结束四反引号围栏
+```
+
+## [0.1.0]
+````
+
+~~~markdown
+## [Unreleased]
+## [0.1.1]
+~~~
+
+## [Unreleased]
+
+- 新增文档示例说明。
+
+## [0.1.0]
+
+- Fixture release.
+''');
+
+          final run = await repo.check(['--only', 'versions']);
+
+          expect(run.exitCode, 0, reason: '$run');
+        },
+      );
+
+      test('fails when shared version header only appears inside a fenced code block', () async {
+        repo = await FixtureRepo.create();
+        repo.write('CHANGELOG.md', '''
+# 变更日志（Changelog）
+
+## [Unreleased]
+
+```markdown
+## [0.1.0]
+
+- 示例占位。
+```
+''');
+
+        final run = await repo.check(['--only', 'versions']);
+
+        expect(run.exitCode, isNot(0), reason: '$run');
+        expect(run.output, contains('FAIL versions'));
+        expect(run.output, contains('[0.1.0]'));
+      });
     });
 
     group('deps stage', () {
